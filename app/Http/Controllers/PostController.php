@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+
 
 class PostController extends Controller
 {
@@ -55,7 +57,11 @@ class PostController extends Controller
     public function edit(string $id)
     {
         //
+
         $post=Post::find($id);
+        if(Gate::denies('isAdmin',$post)){
+            abort(403,"You are not allowed to access this page.");
+        }
         $data['post']=$post;
         return view('edit_post',$data);
     }

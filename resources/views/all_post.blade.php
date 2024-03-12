@@ -55,14 +55,17 @@
                                 {{ $post->user->name}}
                             </th>
                             <td class="px-6 py-4">                                
-                                <button class="bg-blue-700 p-2 rounded-lg shadow-md">
-                                  <a href="{{ route('post_edit', ['id'=>$post->id]) }}"
-                                    class="font-medium text-white dark:text-blue-500 hover:underline">Edit</a>
-                                </button>
-                                <button class="bg-red-700 p-2 rounded-lg shadow-md">
-                                  <a href="{{ route('post_delete', ['id'=>$post->id]) }}"
-                                    class="font-medium text-white dark:text-blue-500 hover:underline">Delete</a>
-                                </button>
+                                
+                                @can('isAdmin')
+                                    <button class="bg-blue-700 p-2 rounded-lg shadow-md">
+                                        <a href="{{ route('post_edit', ['id'=>$post->id]) }}"
+                                        class="font-medium text-white dark:text-blue-500 hover:underline">Edit</a>
+                                    </button>
+                                    <button class="bg-red-700 p-2 rounded-lg shadow-md">
+                                    <a href="{{ route('post_delete', ['id'=>$post->id]) }}"
+                                        class="font-medium text-white dark:text-blue-500 hover:underline">Delete</a>
+                                    </button>                                    
+                                @endcan
                                     
                             </td>
                         </tr>
